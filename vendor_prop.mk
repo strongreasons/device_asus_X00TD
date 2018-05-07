@@ -108,6 +108,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dev.pm.dyn_samplingrate=1 \
     persist.demo.hdmirotationlock=false \
     ro.opengles.version=196610 \
+    vendor.display.disable_inline_rotator=1 \
     vendor.display.disable_partial_split=1 \
     sdm.debug.rotator_downscale=1 \
     debug.sf.enable_gl_backpressure=1 \
