@@ -38,6 +38,8 @@
 
 #include <sys/sysinfo.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <sys/_system_properties.h>
 
 #include "property_service.h"
@@ -164,6 +166,42 @@ void vendor_check_variant()
 
     // Set region code via ro.config.versatility prop
     property_set("ro.config.versatility", region);
+}
+
+/* From Magisk@jni/magiskhide/hide_utils.c */
+static const char *snet_prop_key[] = {
+  "ro.boot.vbmeta.device_state",
+  "ro.boot.verifiedbootstate",
+  "ro.boot.flash.locked",
+  "ro.boot.veritymode",
+  "ro.boot.warranty_bit",
+  "ro.warranty_bit",
+  "ro.debuggable",
+  "ro.secure",
+  "ro.build.type",
+  "ro.build.tags",
+  NULL
+};
+
+static const char *snet_prop_value[] = {
+  "locked",
+  "green",
+  "1",
+  "enforcing",
+  "0",
+  "0",
+  "0",
+  "1",
+  "user",
+  "release-keys",
+  NULL
+};
+
+static void workaround_snet_properties() {
+    // Hide all sensitive props
+    for (int i = 0; snet_prop_key[i]; ++i) {
+        property_override(snet_prop_key[i], snet_prop_value[i]);
+    }
 }
 
 void vendor_load_properties()
