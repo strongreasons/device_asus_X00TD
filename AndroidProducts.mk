@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/proton_X00TD.mk
+    $(LOCAL_DIR)/aicp_X00TD.mk
 
 COMMON_LUNCH_CHOICES := \
-    proton_X00TD-userdebug \
-    proton_X00TD-user \
-    proton_X00TD-eng
+    aicp_X00TD-userdebug \
+    aicp_X00TD-user \
+    aicp_X00TD-eng
