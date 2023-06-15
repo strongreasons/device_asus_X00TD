@@ -56,10 +56,10 @@
         "clone-depth":  "1"
     },
     {
-        "remote": "aospa",
-        "repository": "AOSPA/android_hardware_qcom_gps",
+        "remote": "github",
+        "repository": "AOSPA-X01BD/android_hardware_qcom_gps",
         "target_path": "hardware/qcom/gps",
-        "revision": "topaz-8998",
+        "revision": "topaz-SMxx50",
         "clone-depth":  "1"
     },
     {
