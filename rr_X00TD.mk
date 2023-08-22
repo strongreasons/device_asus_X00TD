@@ -12,7 +12,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk
 # Inherit some common LineageOS stuff
 $(call inherit-product, vendor/rr/config/common_full_phone.mk)
 TARGET_FACE_UNLOCK_SUPPORTED := true
-RR_BUILDTYPE := Unofficial
+RR_BUILDTYPE := Oppenheimer
 BUILD_RR_WALLPAPERS := true
 TARGET_BOOT_ANIMATION_RES := 720
 
