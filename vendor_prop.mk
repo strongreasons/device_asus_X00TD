@@ -110,8 +110,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196610 \
     vendor.display.disable_inline_rotator=1 \
     vendor.display.disable_partial_split=1 \
-    sdm.debug.rotator_downscale=1 \
+    vendor.display.disable_rotator_downscale=1 \
+    vendor.display.disable_skip_validate=1 \
     debug.sf.enable_gl_backpressure=1 \
+    vendor.display.perf_hint_window=50 \
+    vendor.gralloc.disable_ubwc=0 \
     vendor.display.enable_default_color_mode=1
 
 # IMS
@@ -209,11 +212,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.qti.sensors.mot_detect=true \
     ro.vendor.qti.sensors.facing=false \
     ro.vendor.qti.sensors.cmc=false
-
-# Skip Validate Disable
-PRODUCT_PROPERTY_OVERRIDES += \
-    sdm.debug.disable_skip_validate=1 \
-    vendor.display.disable_skip_validate=1
 
 # SurfaceFlinger
 PRODUCT_PROPERTY_OVERRIDES += \
