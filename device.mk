@@ -8,6 +8,7 @@
 $(call inherit-product, device/asus/sdm660-common/sdm660.mk)
 
 # Boot animation
+TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_SCREEN_HEIGHT := 2160
 TARGET_SCREEN_WIDTH := 1080
 
