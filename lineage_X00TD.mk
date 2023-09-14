@@ -10,6 +10,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit some common LineageOS stuff
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+RISING_MAINTAINER := fakedotkit
+TARGET_FACE_UNLOCK_SUPPORTED := true
+TARGET_USE_PIXEL_FINGERPRINT := true
+TARGET_BUILD_APERTURE_CAMERA := true
+TARGET_HAS_UDFPS := false
 
 # Inherit from X00TD device
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
@@ -25,8 +30,4 @@ PRODUCT_GMS_CLIENTID_BASE := android-asus
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_DEVICE=ASUS_X00T \
-    PRODUCT_NAME=WW_X00T \
-    PRIVATE_BUILD_DESC="cheetah-user 13 TQ3A.230805.001 10316531 release-keys"
-
-# Build fingerprint
-BUILD_FINGERPRINT := "google/cheetah/cheetah:13/TQ3A.230805.001/10316531:user/release-keys"
+    PRODUCT_NAME=WW_X00T
