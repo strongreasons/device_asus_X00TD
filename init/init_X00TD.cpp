@@ -1,8 +1,6 @@
 /*
-   Copyright (c) 2015, The Linux Foundation. All rights reserved.
-   Copyright (C) 2016 The CyanogenMod Project.
-   Copyright (C) 2018-2019 The LineageOS Project
-   Copyright (C) 2018-2019 KudProject Development
+   Copyright (c) 2016, The CyanogenMod Project
+   Copyright (c) 2019, The LineageOS Project
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
@@ -30,22 +28,22 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <cstdio>
-
-#include <android-base/file.h>
-#include <android-base/properties.h>
-#include <android-base/strings.h>
-
+#include <cstdlib>
+#include <fstream>
+#include <string.h>
 #include <sys/sysinfo.h>
+#include <unistd.h>
+
+#include <android-base/properties.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <sys/_system_properties.h>
 
-#include "property_service.h"
 #include "vendor_init.h"
+#include "property_service.h"
 
 using android::base::GetProperty;
-using android::base::ReadFileToString;
-using android::base::Trim;
 using android::init::property_set;
 
 void property_override(char const prop[], char const value[])
@@ -59,115 +57,73 @@ void property_override(char const prop[], char const value[])
         __system_property_add(prop, strlen(prop), value, strlen(value));
 }
 
-void property_override_dual(char const system_prop[], char const vendor_prop[], char const value[])
-{
-    property_override(system_prop, value);
-    property_override(vendor_prop, value);
-}
-
-void property_override_triple(char const system_prop[], char const vendor_prop[], char const bootimg_prop[], char const value[])
-{
-    property_override(system_prop, value);
-    property_override(vendor_prop, value);
-    property_override(bootimg_prop, value);
-}
-
-static void init_alarm_boot_properties()
-{
-    char const *boot_reason_file = "/proc/sys/kernel/boot_reason";
-    std::string boot_reason;
-    std::string reboot_reason = GetProperty("ro.boot.alarmboot", "");
-
-    if (ReadFileToString(boot_reason_file, &boot_reason)) {
-        /*
-         * Setup ro.alarm_boot value to true when it is RTC triggered boot up
-         * For existing PMIC chips, the following mapping applies
-         * for the value of boot_reason:
-         *
-         * 0 -> unknown
-         * 1 -> hard reset
-         * 2 -> sudden momentary power loss (SMPL)
-         * 3 -> real time clock (RTC)
-         * 4 -> DC charger inserted
-         * 5 -> USB charger inserted
-         * 6 -> PON1 pin toggled (for secondary PMICs)
-         * 7 -> CBLPWR_N pin toggled (for external power supply)
-         * 8 -> KPDPWR_N pin toggled (power key pressed)
-         */
-        if (Trim(boot_reason) == "3" || reboot_reason == "true")
-            property_set("ro.alarm_boot", "true");
-        else
-            property_set("ro.alarm_boot", "false");
-    }
-}
-
-void vendor_check_variant()
-{
+void set_avoid_gfxaccel_config() {
     struct sysinfo sys;
-    char const *region_file = "/mnt/vendor/persist/flag/countrycode.txt";
-    char const *build_fingerprint, *product_device, *product_model, *product_name;
-    std::string region;
-
     sysinfo(&sys);
 
-    // Make sure the region value is trimmed first
-    if (ReadFileToString(region_file, &region))
-        region = Trim(region);
-
-    // Russian model has a slightly different product name
-    if (region == "RU")
-        product_name = "RU_X00TD";
-    else
-        product_name = "WW_X00TD";
-
-    // 6 GB variant
-    if (sys.totalram > 4096ull * 1024 * 1024) {
-        // Russian model
-        if (region == "RU") {
-            build_fingerprint = "asus/RU_X00TD/ASUS_X00T_9:9/PKQ1/16.2017.1903.050-20190401:user/release-keys";
-            product_device = "ASUS_X00T_9";
-
-        // Global model
-        } else {
-            build_fingerprint = "asus/WW_X00TD/ASUS_X00T_3:9/PKQ1/16.2017.1903.050-20190401:user/release-keys";
-            product_device = "ASUS_X00T_3";
-        }
-
-    // 3/4 GB variants
-    } else {
-        // Russian model
-        if (region == "RU") {
-            build_fingerprint = "asus/RU_X00TD/ASUS_X00T_6:9/PKQ1/16.2017.1903.050-20190401:user/release-keys";
-            product_device = "ASUS_X00T_6";
-
-        // Global model
-        } else {
-            build_fingerprint = "asus/WW_X00TD/ASUS_X00T_2:9/PKQ1/16.2017.1903.050-20190401:user/release-keys";
-            product_device = "ASUS_X00T_2";
-        }
+    if (sys.totalram <= 3072ull * 1024 * 1024) {
+        // Reduce memory footprint
+        property_set("ro.config.avoid_gfx_accel", "true");
     }
+}
 
-    // Product model overrides
-    if (region == "RU" || region == "TW" ||
-        (region == "PH" && sys.totalram > 3072ull * 1024 * 1024))
-        product_model = "ASUS_X00TDB";
-    else if (sys.totalram < 3072ull * 1024 * 1024)
-        product_model = "ASUS_X00TDA";
-    else
-        product_model = "ASUS_X00TD";
+/* From Magisk@jni/magiskhide/hide_utils.c */
+static const char *snet_prop_key[] = {
+  "ro.boot.vbmeta.device_state",
+  "ro.boot.verifiedbootstate",
+  "ro.boot.flash.locked",
+  "ro.boot.veritymode",
+  "ro.boot.warranty_bit",
+  "ro.warranty_bit",
+  "ro.vendor.boot.warranty_bit",
+  "ro.vendor.warranty_bit",
+  "ro.is_ever_orange",
+  "ro.debuggable",
+  "ro.secure",
+  "ro.build.type",
+  "ro.build.tags",
+  NULL
+};
 
-    // Override props based on values set
-    property_override_dual("ro.product.device", "ro.vendor.product.device", product_device);
-    property_override_dual("ro.product.model", "ro.vendor.product.model", product_model);
-    property_override_dual("ro.product.name", "ro.vendor.product.name", product_name);
-    property_override_triple("ro.build.fingerprint", "ro.vendor.build.fingerprint", "ro.bootimage.build.fingerprint", build_fingerprint);
+static const char *snet_prop_value[] = {
+  "locked",
+  "green",
+  "1",
+  "enforcing",
+  "0",
+  "0",
+  "0",
+  "0",
+  "0",
+  "0",
+  "1",
+  "user",
+  "release-keys",
+  NULL
+};
 
-    // Set region code via ro.config.versatility prop
-    property_set("ro.config.versatility", region);
+static void workaround_snet_properties() {
+    // Hide all sensitive props
+    for (int i = 0; snet_prop_key[i]; ++i) {
+        property_override(snet_prop_key[i], snet_prop_value[i]);
+    }
+}
+
+static void set_build_fingerprint(const char *fingerprint){
+    property_override("ro.bootimage.build.fingerprint", fingerprint);
+    property_override("ro.system.build.fingerprint", fingerprint);
+    property_override("ro.build.fingerprint", fingerprint);
+    property_override("ro.vendor.build.fingerprint", fingerprint);
+}
+
+static void set_build_description(const char *description){
+    property_override("ro.build.description", description);
 }
 
 void vendor_load_properties()
 {
-    init_alarm_boot_properties();
-    vendor_check_variant();
+    set_avoid_gfxaccel_config();
+    workaround_snet_properties();
+    set_build_fingerprint("google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys");
+    set_build_description("walleye-user 8.1.0 OPM1.171019.011 4448085 release-keys");
 }
