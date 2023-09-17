@@ -170,10 +170,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # QTI
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.at_library=libqti-at.so \
-    ro.vendor.extension_library=libqti-perfd-client.so \
-    ro.vendor.qti.core_ctl_min_cpu=2 \
-    ro.vendor.qti.core_ctl_max_cpu=4 \
-    ro.vendor.qti.sys.fw.bg_apps_limit=60
+    ro.vendor.extension_library=libqti-perfd-client.so
 
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -181,14 +178,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.iwlan.enable=true \
     persist.radio.aosp_usr_pref_sel=true \
     persist.radio.multisim.config=dsds \
-    persist.radio.VT_CAM_INTERFACE=1 \
     persist.radio.VT_CAM_INTERFACE=2 \
     persist.vendor.radio.apm_sim_not_pwdn=1 \
     persist.vendor.radio.atfwd.start=true \
     persist.vendor.radio.sib16_support=1 \
     persist.vendor.radio.custom_ecc=1 \
     persist.vendor.radio.rat_on=combine \
-    persist.vendor.qti.telephony.vt_cam_interface=1 \
+    persist.vendor.qti.telephony.vt_cam_interface=2 \
     ril.subscription.types=NV,RUIM \
     rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
     ro.carrier=unknown \
@@ -200,7 +196,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # RmNet Data
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.data.df.dev_name=rmnet_usb0
+    persist.data.df.dev_name=rmnet_usb0 \
     persist.vendor.radio.add_power_save=1
 
 # Sensor
