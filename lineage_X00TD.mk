@@ -25,29 +25,19 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 # Inherit from X00TD device
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
-PRODUCT_BRAND := asus
-PRODUCT_DEVICE := X00TD
-PRODUCT_MANUFACTURER := asus
+# Device identifier. This must come after all inclusions.
 PRODUCT_NAME := lineage_X00TD
+PRODUCT_DEVICE := X00TD
+PRODUCT_BRAND := asus
+PRODUCT_MODEL := Zenfone Max Pro M1
+PRODUCT_MANUFACTURER := asus
 
 PRODUCT_GMS_CLIENTID_BASE := android-asus
 
-TARGET_VENDOR := asus
-TARGET_VENDOR_PRODUCT_NAME := X00TD
-
 PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_DEVICE=ASUS_X00T \
+    PRODUCT_NAME=WW_X00T \
     PRIVATE_BUILD_DESC="sdm660_64-user 9 PKQ1 1682 release-keys"
 
-# Set BUILD_FINGERPRINT variable to be picked up by both system and vendor build.prop
-BUILD_FINGERPRINT := Android/sdm660_64/sdm660_64:9/PKQ1/16.2017.2004.063-20200407:user/release-keys
-
-# The following system and vendor props will be set by vendor init
-PRODUCT_SYSTEM_PROPERTY_BLACKLIST := \
-    ro.product.device \
-    ro.product.model \
-    ro.product.name
-
-PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
-    ro.vendor.product.device \
-    ro.vendor.product.model \
-    ro.vendor.product.name
+# Build fingerprint
+BUILD_FINGERPRINT := "Android/sdm660_64/sdm660_64:9/PKQ1/16.2017.2004.063-20200407:user/release-keys"
