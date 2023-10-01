@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/serasa_X00TD.mk
+    $(LOCAL_DIR)/X00TD.mk
 
 COMMON_LUNCH_CHOICES := \
-    serasa_X00TD-userdebug \
-    serasa_X00TD-user \
-    serasa_X00TD-eng
+    X00TD-userdebug \
+    X00TD-user \
+    X00TD-eng
