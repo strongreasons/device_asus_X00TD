@@ -5,8 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_X00TD.mk
+    $(LOCAL_DIR)/serasa_X00TD.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_X00TD-userdebug
-
+    serasa_X00TD-userdebug \
+    serasa_X00TD-user \
+    serasa_X00TD-eng
