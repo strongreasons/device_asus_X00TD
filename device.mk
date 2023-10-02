@@ -11,10 +11,6 @@ $(call inherit-product, device/asus/sdm660-common/sdm660.mk)
 TARGET_SCREEN_HEIGHT := 2160
 TARGET_SCREEN_WIDTH := 1080
 
-# Maintainer
-PRODUCT_SYSTEM_PROPERTIES += \
-  ro.serasa.maintainer=dotkit
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay
@@ -32,7 +28,8 @@ PRODUCT_COPY_FILES += \
 
 # Wifi
 PRODUCT_PACKAGES += \
-    X00TDWifiOverlay
+    X00TDWifiOverlay \
+    MaintainerOverlayX00TD
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/asus/X00TD/X00TD-vendor.mk)
