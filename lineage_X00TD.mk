@@ -19,8 +19,9 @@ MATRIXX_BATTERY := 5000mAh
 MATRIXX_DISPLAY := 1080x2160
 
 # Gapps
-WITH_GMS := false
+WITH_GMS := true
 TARGET_GAPPS_ARCH := arm64
+TARGET_BOOT_ANIMATION_RES := 1080
 
 # Inherit from X00TD device
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
@@ -37,7 +38,7 @@ PRODUCT_GMS_CLIENTID_BASE := android-asus
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_DEVICE=ASUS_X00TD \
     PRODUCT_NAME=WW_X00TD \
-    PRIVATE_BUILD_DESC="shiba-user 14 UQ1A.240205.004 11269751 release-keys"
+    PRIVATE_BUILD_DESC="aurora-user-13-TWD9.240405.001-11491291-release-keys"
 
 # Build fingerprint
-BUILD_FINGERPRINT := "google/shiba/shiba:14/UQ1A.240205.004/11269751:user/release-keys"
+BUILD_FINGERPRINT := "google/aurora/aurora:13/TWD9.240405.001/11491291:user/release-keys"
