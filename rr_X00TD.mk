@@ -14,7 +14,7 @@ $(call inherit-product, vendor/rr/config/common_full_phone.mk)
 TARGET_FACE_UNLOCK_SUPPORTED := true
 RR_BUILDTYPE := Oppenheimer
 BUILD_RR_WALLPAPERS := true
-TARGET_BOOT_ANIMATION_RES := 720
+TARGET_BOOT_ANIMATION_RES := 1080
 
 # Inherit from X00TD device
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
@@ -29,8 +29,8 @@ PRODUCT_MANUFACTURER := asus
 PRODUCT_GMS_CLIENTID_BASE := android-asus
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_DEVICE=ASUS_X00T \
-    PRODUCT_NAME=WW_X00T \
+    PRODUCT_DEVICE=ASUS_X00TD \
+    PRODUCT_NAME=WW_X00TD \
     PRIVATE_BUILD_DESC="walleye-user 8.1.0 OPM1.171019.011 4448085 release-keys"
 
 # Build fingerprint
