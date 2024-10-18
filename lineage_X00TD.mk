@@ -12,6 +12,21 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk
 # Inherit some common LineageOS stuff
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
+TARGET_BOOT_ANIMATION_RES := 1080
+
+# Matrixx
+MATRIXX_MAINTAINER := ∂σткιт
+WITH_GMS := false
+
+# Extra Matrixx Stuff
+MATRIXX_CHIPSET := SDM660
+MATRIXX_BATTERY := 5000mAh
+MATRIXX_DISPLAY := 1080x2160
+BUILD_GOOGLE_CONTACTS := false
+BUILD_GOOGLE_DIALER := false
+BUILD_GOOGLE_MESSAGE := false
+TARGET_DISABLE_EPPE := true
+
 # Inherit from X00TD device
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
@@ -30,9 +45,9 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="sdm660_64-user 10 QKQ1 72 release-keys"
-    
+
 # Set BUILD_FINGERPRINT variable to be picked up by both system and vendor build.prop
-BUILD_FINGERPRINT := "asus/RU_X00TD/ASUS_X00T_6:10/QKQ1/17.2017.2012.438-20201203:user/release-keys"
+BUILD_FINGERPRINT := "asus/WW_X00TD/ASUS_X00TD_6:10/QKQ1/17.2017.2012.438-20201203:user/release-keys"
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.vendor.build.fingerprint=$(BUILD_FINGERPRINT) \
