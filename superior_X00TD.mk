@@ -8,16 +8,16 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit some common AfterlifeOS stuff
-$(call inherit-product, vendor/afterlife/config/common_full_phone.mk)
+# Inherit some common SuperiorOS stuff
+$(call inherit-product, vendor/superior/config/common.mk)
 
-# afterlife official flags
 TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_FACE_UNLOCK_SUPPORTED := true
-AFTERLIFE_MAINTAINER := StRess
+TARGET_INCLUDE_MATLOG := false
+USE_MOTO_CALCULATOR := true
 
 # Offline Charging
-USE_PIXEL_CHARGING := true
+TARGET_INCLUDE_PIXEL_CHARGER := true
 
 # disable/enable blur support, default is false
 TARGET_SUPPORTS_BLUR := true
@@ -26,7 +26,7 @@ TARGET_SUPPORTS_BLUR := true
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := afterlife_X00TD
+PRODUCT_NAME := superior_X00TD
 PRODUCT_DEVICE := X00TD
 PRODUCT_BRAND := asus
 PRODUCT_MODEL := Zenfone Max Pro M1
@@ -42,7 +42,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="sdm660_64-user 8.1.0 OPM1 2305 release-keys"
 
 # Set BUILD_FINGERPRINT variable to be picked up by both system and vendor build.prop
-BUILD_FINGERPRINT := "Android/sdm660_64/sdm660_64:8.1.0/OPM1/15.2016.1810.334-20181019:user/release-keys"
+BUILD_FINGERPRINT := "asus/X00T/WW_X00T:8.1.0/OPM1/15.2016.1810.334-20181019:user/release-keys"
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.vendor.build.fingerprint=$(BUILD_FINGERPRINT) \
