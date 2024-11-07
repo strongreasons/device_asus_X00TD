@@ -16,6 +16,9 @@ git clone --depth=1 https://github.com/strongreasons/vendor_asus -b main vendor/
 rm -rf vendor/lineage-priv/keys
 git clone https://github.com/sotodrom/keys vendor/lineage-priv/keys
 
+rm -rf packages/resources/devicesettings
+git clone --depth=1 https://github.com/LineageOS/android_packages_resources_devicesettings packages/resources/devicesettings
+
 cd vendor/qcom/opensource/libfmjni
 git revert 055b0bed7a5f8822fc7c4658fff44c886177cb9b --no-edit
 cd ../../../..
