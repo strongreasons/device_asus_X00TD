@@ -5,9 +5,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/superior_X00TD.mk
+    $(LOCAL_DIR)/lineage_X00TD.mk
 
 COMMON_LUNCH_CHOICES := \
-    superior_X00TD-ap2a-eng \
-    superior_X00TD-ap2a-user \
-    superior_X00TD-ap2a-userdebug
+    lineage_X00TD-ap2a-eng \
+    lineage_X00TD-ap2a-user \
+    lineage_X00TD-ap2a-userdebug
