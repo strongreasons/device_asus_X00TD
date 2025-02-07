@@ -9,25 +9,34 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk)
 
-# Inherit some common LineageOS stuff
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common ProjectInfinity-X stuff
+$(call inherit-product, vendor/infinity/config/common_full_phone.mk)
+
+TARGET_SUPPORTS_CALL_RECORDING := true
+TARGET_FACE_UNLOCK_SUPPORTED := true
+INFINITY_BUILD_TYPE := UNOFFICIAL
+TARGET_SUPPORTS_BLUR := false
+WITH_GAPPS := false
+INFINITY_MAINTAINER := qǝuʞz
 
 # Inherit from X00TD device
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
-# Inherit some common crDroid stuff
-TARGET_SUPPORTS_QUICK_TAP  := true
-TARGET_SUPPORTS_CALL_RECORDING := true
-TARGET_INCLUDE_PIXEL_CHARGER := true
-
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := lineage_X00TD
+PRODUCT_NAME := infinity_X00TD
 PRODUCT_DEVICE := X00TD
 PRODUCT_BRAND := asus
 PRODUCT_MODEL := Zenfone Max Pro M1
 PRODUCT_MANUFACTURER := asus
 
 PRODUCT_GMS_CLIENTID_BASE := android-asus
+
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.infinity.soc=Snapdragon 636 \
+    ro.infinity.battery=5000 mAh \
+    ro.infinity.display=1080 x 2160, 60 Hz \
+    ro.infinity.camera=16MP + 13MP + 5MP \
+    ro.product.marketname=Asus Zenfone Max Pro M1
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceProduct=ASUS_X00TD
