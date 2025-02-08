@@ -31,12 +31,5 @@ PRODUCT_MANUFACTURER := asus
 
 PRODUCT_GMS_CLIENTID_BASE := android-asus
 
-PRODUCT_SYSTEM_PROPERTIES += \
-    ro.infinity.soc=Snapdragon 636 \
-    ro.infinity.battery=5000 mAh \
-    ro.infinity.display=1080 x 2160, 60 Hz \
-    ro.infinity.camera=16MP + 13MP + 5MP \
-    ro.product.marketname=Asus Zenfone Max Pro M1
-
 PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceProduct=ASUS_X00TD
