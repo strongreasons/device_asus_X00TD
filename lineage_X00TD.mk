@@ -6,26 +6,25 @@
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+TARGET_SUPPORTS_OMX_SERVICE := false
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_o_mr1.mk)
 
 # Inherit some common ProjectInfinity-X stuff
-$(call inherit-product, vendor/infinity/config/common_full_phone.mk)
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-TARGET_SUPPORTS_CALL_RECORDING := true
-TARGET_FACE_UNLOCK_SUPPORTED := true
-INFINITY_BUILD_TYPE := UNOFFICIAL
-TARGET_SUPPORTS_BLUR := false
-WITH_GAPPS := true
-TARGET_SHIPS_FULL_GAPPS := false
-TARGET_BUILD_GOOGLE_TELEPHONY := true
-INFINITY_MAINTAINER := qǝuʞz
+RISING_MAINTAINER := qǝuʞz
+TARGET_PREBUILT_LAWNCHAIR_LAUNCHER := true
+WITH_GMS := true
+TARGET_CORE_GMS := true
+TARGET_CORE_GMS_EXTRAS := false
+TARGET_DEFAULT_PIXEL_LAUNCHER := true
+TARGET_INCLUDE_GOOGLE_DIALER := true
 
 # Inherit from X00TD device
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := infinity_X00TD
+PRODUCT_NAME := lineage_X00TD
 PRODUCT_DEVICE := X00TD
 PRODUCT_BRAND := asus
 PRODUCT_MODEL := Zenfone Max Pro M1
@@ -34,4 +33,8 @@ PRODUCT_MANUFACTURER := asus
 PRODUCT_GMS_CLIENTID_BASE := android-asus
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    DeviceProduct=ASUS_X00TD
+    DeviceProduct=ASUS_X00TD \
+    BuildDesc="sdm660_64-user 10 QKQ1 72 release-keys" \
+    BuildFingerprint=asus/ASUS_X00TD/ASUS_X00TD:10/QKQ1/17.2017.2012.438-20201203:user/release-keys \
+    RisingMaintainer="qǝuʞz" \
+    RisingChipset="Snapdragon 660"
