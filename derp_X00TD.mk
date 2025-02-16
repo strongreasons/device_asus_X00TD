@@ -11,6 +11,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit some common DerpFest stuff
 $(call inherit-product, vendor/derp/config/common_full_phone.mk)
 TARGET_SUPPORTS_OMX_SERVICE := false
+USE_LEGACY_BOOTANIMATION := true
 
 # Gapps
 TARGET_USES_MINI_GAPPS := true
@@ -28,6 +29,6 @@ PRODUCT_MANUFACTURER := asus
 PRODUCT_GMS_CLIENTID_BASE := android-asus
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    DeviceProduct=ASUS_X00TD
-
-BUILD_FINGERPRINT := "asus/ASUS_X00TD/ASUS_X00TD:10/QKQ1/17.2017.2012.438-20201203:user/release-keys"
+    DeviceProduct=ASUS_X00TD \
+    BuildDesc="sdm660_64-user 10 QKQ1 72 release-keys" \
+    BuildFingerprint=asus/ASUS_X00TD/ASUS_X00TD:10/QKQ1/17.2017.2012.438-20201203:user/release-keys
