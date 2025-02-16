@@ -14,15 +14,11 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 RISING_MAINTAINER := qǝuʞz
 TARGET_PREBUILT_LAWNCHAIR_LAUNCHER := true
-WITH_GMS := true
-TARGET_CORE_GMS := true
+WITH_GMS := false
+TARGET_CORE_GMS := false
 TARGET_CORE_GMS_EXTRAS := false
 TARGET_DEFAULT_PIXEL_LAUNCHER := true
 TARGET_INCLUDE_GOOGLE_DIALER := true
-
-ALLOW_MISSING_DEPENDENCIES := true
-TARGET_DISABLE_EPPE := true
-DISABLE_ARTIFACT_PATH_REQUIREMENTS := true
 
 # Inherit from X00TD device
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
@@ -41,4 +37,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="sdm660_64-user 10 QKQ1 72 release-keys" \
     BuildFingerprint=asus/ASUS_X00TD/ASUS_X00TD:10/QKQ1/17.2017.2012.438-20201203:user/release-keys \
     RisingMaintainer="qǝuʞz" \
-    RisingChipset="Snapdragon 660"
+    RisingChipset="Snapdragon® 636"
