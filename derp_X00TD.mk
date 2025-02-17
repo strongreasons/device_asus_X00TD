@@ -10,8 +10,12 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit some common DerpFest stuff
 $(call inherit-product, vendor/derp/config/common_full_phone.mk)
+TARGET_DISABLE_EPPE := true
 TARGET_SUPPORTS_OMX_SERVICE := false
 USE_LEGACY_BOOTANIMATION := true
+TARGET_NOT_USES_BLUR := true
+TARGET_FACE_UNLOCK_SUPPORTED := true
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST := false
 
 # Gapps
 TARGET_USES_MINI_GAPPS := true
