@@ -8,8 +8,8 @@ git clone https://github.com/SonicBSV/android_device_asus_sdm660-common-4.19 dev
 rm -rf vendor/asus
 git clone --depth=1 https://github.com/SonicBSV/proprietary_vendor_asus-4.19 vendor/asus
 
-rm -rf vendor/lineage-priv/keys
-mkdir -p vendor/lineage-priv/keys
-git clone https://github.com/sotodrom/keys vendor/lineage-priv/keys/
+#rm -rf vendor/lineage-priv/keys
+#mkdir -p vendor/lineage-priv/keys
+#git clone https://github.com/sotodrom/keys vendor/lineage-priv/keys/
 
 export TZ=Asia/Jakarta
