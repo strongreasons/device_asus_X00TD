@@ -9,6 +9,8 @@ include device/asus/sdm660-common/BoardConfigCommon.mk
 
 DEVICE_PATH := device/asus/X00TD
 
+BUILD_BROKEN_VENDOR_PROPERTY_NAMESPACE := true
+
 # Assert
 TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
 TARGET_OTA_ASSERT_DEVICE := ASUS_X00TD,X00TD,X00T
