@@ -38,6 +38,9 @@ blob_fixups: blob_fixups_user_type = {
     # Fingerprint - liblog dep.
     'vendor/lib64/hw/cdfinger.fingerprint.default.so': blob_fixup()
         .add_needed('liblog.so'),
+    # Fingerprint - so name fixups
+    ('vendor/lib64/hw/cdfinger.fingerprint.default.so', 'vendor/lib64/hw/fingerprint.sdm660.so'):blob_fixup()
+        .fix_soname(), 
 }  # fmt: skip
 
 # Define the module
