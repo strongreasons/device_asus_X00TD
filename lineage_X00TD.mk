@@ -17,9 +17,10 @@ $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
 TARGET_BUILD_DEVICE_AS_WEBCAM := true
 
-WITH_GMS := false
-
 # Inherit some common device props
+WITH_GMS := false
+TARGET_HAS_UDFPS := false
+TARGET_ENABLE_BLUR := false
 TARGET_FACE_UNLOCK_SUPPORTED := true
 SYSTEM_OPTIMIZE_JAVA := true
 SYSTEMUI_OPTIMIZE_JAVA := true
@@ -36,4 +37,7 @@ PRODUCT_MANUFACTURER := asus
 PRODUCT_GMS_CLIENTID_BASE := android-asus
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    DeviceProduct=ASUS_X00TD
+    BuildDesc="sdm660_64-user 10 QKQ1 72 release-keys" \
+    DeviceProduct=$(PRODUCT_SYSTEM_NAME) \
+    DeviceName=$(PRODUCT_SYSTEM_DEVICE) \
+    BuildFingerprint=asus/RU_X00TD/ASUS_X00T_6:10/QKQ1/17.2017.2012.438-20201203:user/release-keys
