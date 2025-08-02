@@ -8,11 +8,6 @@ from extract_utils.fixups_blob import (
     blob_fixup,
     blob_fixups_user_type,
 )
-from extract_utils.fixups_lib import (
-    lib_fixup_remove,
-    lib_fixups,
-    lib_fixups_user_type,
-)
 from extract_utils.main import (
     ExtractUtils,
     ExtractUtilsModule,
@@ -48,7 +43,6 @@ module = ExtractUtilsModule(
     'X00TD',
     'asus',
     blob_fixups=blob_fixups,
-    lib_fixups=lib_fixups,
     namespace_imports=namespace_imports,
 )
 
